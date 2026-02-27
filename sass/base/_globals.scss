@@ -1,0 +1,19 @@
+@use "abstracts" as *;
+
+body {
+  background: linear-gradient(-45deg, color(gradient-2), color(gradient-1));
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+h3 {
+  font-size: 20px !important;
+}

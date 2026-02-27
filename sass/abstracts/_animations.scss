@@ -1,0 +1,55 @@
+@keyframes search-button-out {
+  100% {
+    right: 16px;
+    left: auto;
+    opacity: 1;
+  }
+  51% {
+    right: 24px;
+    left: auto;
+    opacity: 0;
+  }
+  50% {
+    left: auto;
+    right: auto;
+    opacity: 0;
+  }
+  49% {
+    left: 24px;
+    right: auto;
+    opacity: 0;
+  }
+  0% {
+    left: 16px;
+    right: auto;
+    opacity: 1;
+  }
+}
+
+@keyframes search-button-in {
+  0% {
+    right: 16px;
+    left: auto;
+    opacity: 1;
+  }
+  49% {
+    right: 24px;
+    left: auto;
+    opacity: 0;
+  }
+  50% {
+    left: auto;
+    right: auto;
+    opacity: 0;
+  }
+  51% {
+    left: 24px;
+    right: auto;
+    opacity: 0;
+  }
+  100% {
+    left: 16px;
+    right: auto;
+    opacity: 1;
+  }
+}

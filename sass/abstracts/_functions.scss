@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "abstracts/assets" as *;
+@use "abstracts/variables" as *;
+
+@function color($name, $alpha: 1) {
+  $color: map.get($colors, $name);
+
+  @if $color == null {
+    @error "Color `#{$name}` not found in \$colors map.";
+  }
+
+  @return rgba($color, $alpha);
+}
+
+@function icon($name) {
+  $icon: map.get($icons, $name);
+
+  @if $icon == url {
+    @error "Icon `#{$name}` not found in \$icons map.";
+  }
+
+  @return $icon;
+}

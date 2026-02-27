@@ -1,0 +1,17 @@
+$colors: (
+  bg-1: #ffffff,
+  bg-2: #000000,
+
+  gradient-1: #0b1016,
+  gradient-2: #0e141b,
+
+  accent-1: #b3dfff,
+  accent-2: #4cb4ff,
+  accent-3: #1a9fff,
+);
+
+$header-top: 34px;
+$header-size: 56px;
+$header-itens: 3;
+$header-calc: calc(100% - #{$header-size * $header-itens});
+$header-index: 3;

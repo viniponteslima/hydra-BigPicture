@@ -1,0 +1,97 @@
+@use "abstracts" as *;
+
+.header__back-button {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: calc($header-top * (-1));
+  z-index: calc($header-index + 1);
+  height: $header-top;
+  width: $header-top;
+  color: transparent;
+  background: icon(backbuttom);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  transition: left 0.2s linear;
+  animation: none;
+}
+
+.header__back-button--enabled {
+  left: 0;
+  transition: left 0.2s 0s linear;
+  animation: none;
+}
+
+.header__back-button--enabled:hover {
+  background-color: color(bg-1, 0.1);
+}
+
+body:has(.header__back-button--enabled) .title-bar {
+  padding-left: calc($header-top);
+}
+
+.title-bar {
+  display: flex;
+  height: $header-top !important;
+  min-height: $header-top !important;
+  padding: 0;
+  gap: 0;
+  background: rgba(255,255,255,0.05);
+  border: 0;
+  transition: padding-left 0.2s linear;
+}
+
+.title-bar h4::before {
+  app-region: no-drag;
+  content: "";
+  height: 20px;
+  width: 20px;
+  background: -webkit-linear-gradient(0deg, color(bg-1) 50%, color(accent-2) 50%);
+  background-size: 200%;
+  background-position: 0%;
+  mask-image: icon(hydra);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transition: all 0.1s 0s linear;
+}
+
+.title-bar h4::after {
+  app-region: no-drag;
+  content: "BigPicture";
+  font-size: 12px; 
+  font-weight: 100;
+  padding-left: 4px;
+  background: color(bg-1);
+  opacity: 0.25;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title-bar h4 {
+  app-region: no-drag;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: $header-top;
+  color: color(bg-1, 0.25);
+  background-image: -webkit-linear-gradient(0deg, color(bg-1) 50%, color(accent-2) 50%, color(accent-1) 75%);
+  background-size: 200%;
+  background-position: 0%;
+  background-clip: text;
+  text-fill-color: transparent;
+  cursor: none;
+  transition: all 0.2s 0.1s linear;
+  padding: 0 8px; 
+}
+
+.title-bar h4:hover {
+  background-position: 100%;
+  transition: all 0.2s 0s linear;
+}
+
+.title-bar h4:hover::before {
+  background-position: 100%;
+  transition: all 0.1s 0.2s linear;
+}
