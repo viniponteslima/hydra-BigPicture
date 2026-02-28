@@ -1,0 +1,59 @@
+@use "abstracts" as *;
+
+.game-details__hero-buttons > button,
+.library-view-options__option,
+.notification-item__picture,
+.button {
+  background: color(bg-1, 0.25);
+  border-radius: 2px;
+  color: color(bg-1);
+  border: 1px solid transparent;
+  min-height: $header-size;
+  min-width: $header-size;
+  justify-content: center;
+}
+
+.button:hover,
+.filter-item:hover  {
+  background: color(bg-1, 0.5);
+}
+
+.button--outline {
+  background: transparent;
+  border: 1px solid color(bg-1, 0.5);
+}
+
+.button--outline,
+.filter-item  {
+  background: transparent;
+  border: 1px solid color(bg-1, 0.25);
+  color: color(bg-1);
+}
+
+// 
+
+.download-group__simple-action-btn:hover, .download-group__simple-menu-btn:hover {
+  background: color(bg-1, 0.5);
+  border: 0;
+}
+
+.download-group__simple-action-btn svg, .download-group__simple-menu-btn svg {
+  transform: scale(1.5)
+}
+
+.download-group__simple-action-btn svg path, .button--primary.download-group__simple-menu-btn svg path {
+  fill: color(bg-1);
+}
+
+.react-tooltip {
+  background: color(bg-1);
+  color: color(bg-2)
+}
+
+.sidebar-section__content {
+  transition: all ease 0.3s;
+}
+
+.subscription-required-button {
+  color: color(accent-2);
+}

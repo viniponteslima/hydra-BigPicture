@@ -1,0 +1,73 @@
+@use "abstracts" as *;
+
+.download-group__header-title-group {
+  gap: 0;
+}
+
+.download-group__header-title-group::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: color(bg-1, 0.25)
+}
+
+.download-group__header-title-group h2 {
+  font-weight: 400;
+  font-size: 24px;
+  text-wrap: nowrap;
+}
+
+.download-group__header-title-group h3 {
+  background: transparent;
+  font-size: 20px;
+  font-weight: 200;
+  font-family: monospace;
+  color: color(bg-1, 0.5);
+}
+
+.download-group__header-title-group h3::before {
+  content: "(";
+}
+
+.download-group__header-title-group h3::after {
+  content: ")";
+}
+
+.download-group__simple-list {
+  gap: 0;
+}
+
+.download-group__simple-card {
+  border-radius: 0;
+  padding: 16px 38px 16px 16px;
+}
+
+.download-group__simple-card:hover {
+  background: color(bg-1, 0.25);
+}
+
+.download-group__simple-action-btn, .download-group__simple-menu-btn {
+  background: color(bg-1, 0.25);
+  color: color(bg-1);
+  border-radius: 2px;
+  min-width: $header-size;
+  min-height: $header-size;
+  transition: all 0.2s linear;
+}
+
+.button.download-group__simple-action-btn {
+  gap: 16px;
+  width: calc($header-size * 4);
+}
+
+.download-group__simple-progress {
+  width: 20%;
+}
+
+.download-group__progress-bar--small {
+  height: 8px;
+}
+
+.download-group__progress-fill {
+  background: color(bg-1, 0.5) !important;
+ }

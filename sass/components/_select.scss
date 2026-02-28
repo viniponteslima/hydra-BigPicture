@@ -1,0 +1,52 @@
+@use "abstracts" as *;
+
+.text-field-container__text-field, 
+.select-field {
+  height: $header-size;
+}
+
+.text-field-container__text-field input {
+  padding: 0 16px;
+}
+
+.select-field {
+  position: relative;
+}
+
+.select-field select {
+  padding: 0 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 40px;
+  color-scheme: dark;
+}
+
+.select-field select::-webkit-scrollbar {
+  background: color(gradient-1, 1);
+}
+
+.select-field::after {
+  content: "⮟";
+  color: color(bg-1);
+  position: absolute;
+  right: 16px;
+  transform: rotateZ(-90deg);
+  pointer-events: none;
+  transition: transform 0.2s linear;
+}
+
+.select-field:has(select:open)::after {
+  transform: rotateZ(0);
+}
+
+.select-field__option option,
+.checkbox-field__checkbox  {
+  background: transparent;
+  border: 1px solid color(bg-1, 0.25);
+
+  &:hover {
+    background: color(bg-1, 0.25);
+    border: 1px solid transparent !important;
+  }
+}

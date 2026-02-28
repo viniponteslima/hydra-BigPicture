@@ -1,3 +1,45 @@
+@use "abstracts" as *;
+
 * {
   outline: none;
+}
+
+.hero-panel,
+.context-menu,
+.settings-download-sources__item,
+.text-field-container__text-field,
+.text-field-container__text-field--dark,
+.container__content,
+[class*=filter-section],
+.notification-item,
+[class*="skeleton"],
+.catalogue__filters-container,
+.download-group__simple-thumbnail,
+.theme-card,
+.text-field-container__text-field--primary,
+[class*=select-field],
+[class*=profile-section] {
+  background: transparent;
+  border: 0;
+}
+
+.context-menu,
+.settings-download-sources__item,
+.text-field-container__text-field,
+.text-field-container__text-field--dark,
+.notification-item,
+.theme-card,
+.filter-section,
+[class=select-field__option],
+.profile-section  {
+  border: 1px solid color(bg-1, 0.25);
+  border-radius: 2px;
+
+  &:hover {
+    border: 1px solid color(bg-1, 0.5);
+  }
+}
+
+.download-group__simple-thumbnail {
+  border-radius: 0;
 }

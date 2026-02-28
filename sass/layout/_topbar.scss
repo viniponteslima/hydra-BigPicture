@@ -43,7 +43,7 @@ body:has(.header__back-button--enabled) .title-bar {
 }
 
 .title-bar h4::before {
-  app-region: no-drag;
+  -webkit-app-region: no-drag;
   content: "";
   height: 20px;
   width: 20px;
@@ -58,7 +58,7 @@ body:has(.header__back-button--enabled) .title-bar {
 }
 
 .title-bar h4::after {
-  app-region: no-drag;
+  -webkit-app-region: no-drag;
   content: "BigPicture";
   font-size: 12px; 
   font-weight: 100;
@@ -70,7 +70,7 @@ body:has(.header__back-button--enabled) .title-bar {
 }
 
 .title-bar h4 {
-  app-region: no-drag;
+  -webkit-app-region: no-drag;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -80,7 +80,7 @@ body:has(.header__back-button--enabled) .title-bar {
   background-size: 200%;
   background-position: 0%;
   background-clip: text;
-  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
   cursor: none;
   transition: all 0.2s 0.1s linear;
   padding: 0 8px; 

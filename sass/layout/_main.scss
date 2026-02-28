@@ -1,0 +1,37 @@
+@use "abstracts" as *;
+
+body:has(.game-details__wrapper) main {
+  margin-top: 0;
+}
+
+main {
+  margin-top: $header-size;
+  display: flex;
+  flex-direction: column;
+}
+
+#scrollableDiv > section > div {
+  box-shadow: none;
+}
+
+#scrollableDiv button > svg {
+  transform: scale(1.25);
+}
+
+#scrollableDiv::-webkit-scrollbar:vertical,
+#scrollableDiv > section::-webkit-scrollbar:vertical {
+  display: none !important;
+}
+
+.header {
+  background: transparent;
+  padding: 0 32px;
+  border: none;
+}
+
+.header__title {
+  display: none;
+  justify-content: center;
+  color: color(bg-1);
+  text-transform: uppercase;
+}

@@ -1,0 +1,49 @@
+@use "abstracts" as *;
+
+.backdrop--windows {
+  height: unset;
+  top: $header-top;
+  bottom: 0;
+  padding: $header-top;
+  z-index: calc($header-index + 1);
+  background-color: color(bg-2, 0.75);
+}
+
+.modal {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.modal__header {
+  padding: 0;
+  border-radius: 2px 2px 0 0;
+  background: color(gradient-2, 1);
+  border: 0;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.modal__header-title {
+  padding: 16px;
+}
+
+.modal__close-button {
+  height: 100%;
+  aspect-ratio: 1/1;
+
+  &:hover {
+    background: color(gradient-1, 1);
+  }
+}
+
+.modal__content {
+  background: color(gradient-1, 1);
+  border-radius: 0 0 4px 4px;
+}
+
+// .game-options-modal__cloud-sync-hydra-cloud {
+//   background: linear-gradient(-45deg, color(accent-2), color(accent-1));
+//   color: color(gradient-1, 1);
+//   padding: 2px 8px;
+// }

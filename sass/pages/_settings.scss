@@ -1,0 +1,26 @@
+@use "abstracts" as *;
+
+.settings__content {
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  flex-direction: column;
+}
+
+.settings__sidebar {
+  @include container__toolbar;
+}
+
+.settings__sidebar-button {
+  @include toolbar;
+}
+
+.settings__panel h2 {
+  display: none;
+}
+
+.context-menu,
+input[type="range" i]
+{
+  background: color(gradient-1, 0.5) !important;
+}

@@ -1,113 +1,167 @@
 @use "abstracts" as *;
 
-// Search
-.header__search {
-  position: fixed;
-  z-index: $header-index;
-  left: 0;
-  top: $header-top;
-  padding: 0;
-  height: $header-size;
-  border-radius: 0;
-  border:0; 
-  width: calc($header-calc);
+.sidebar {
   background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: right;
+  border: none;
+  border-radius: 8px;
+  @include width(
+    max-content !important, 
+    max-content !important, 
+    max-content !important);
+  bottom: 5px;
+  position: fixed;
+  z-index: 7;
+  padding: 8px 12px;
+  left: 32px;
+  cursor: pointer;
+  @include flex($align: center);
 }
 
-.header__search *:not(.header__action-button, .header__action-button *) {
-  cursor: icon(text) 2 12, text !important;
-}
-
-.header__action-button:nth-of-type(1) {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  right: 16px;
+.sidebar > .sidebar__container {
   cursor: default;
 }
 
-.header__action-button:nth-of-type(2) {
-  position: absolute;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  border-radius: 100%;
-  background: color(bg-2);
+.sidebar:hover:not(:has(.sidebar__container:hover)) {
+  background: color(bg-1, 0.1);
 }
 
-.header__action-button:nth-of-type(2):hover {
-  background: color(bg-2, 0.5);
+.sidebar::after,
+.sidebar::before {
+  @include flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  $h: calc($header-top - 4px);
+  @include height($h, $h, $h);
 }
 
-.header__action-button:nth-of-type(2) svg path {
-  fill: color(bg-1)
+.sidebar::before {
+  content: "Hydra";
+  background: color(bg-1);
+  color: color(gradient-1, 1);
+  border-radius: 32px;
 }
 
-.header__search:not(:focus-within):not(:hover):has(.header__search-input:placeholder-shown) .header__action-button:nth-child(1) {
-  animation: search-button-out 0.5s ease-in-out forwards;
+.sidebar::after {
+  content: "Menu";
 }
 
-.header__search:not(:focus-within):hover:has(.header__search-input:placeholder-shown) .header__action-button:nth-child(1) {
-  animation: search-button-in 0.5s ease-in-out forwards;
+.sidebar__content {
+  background: transparent;
+  border: none;
+  inset: 
+    0
+    0
+    0
+    100%;
+  position: fixed;
+  z-index: 10;
+  padding: 0;
+  justify-content: center;
+  cursor: pointer;
 }
 
-.header__search:placeholder-shown .header__action-button:nth-child(1) {
-  right: 16px;
+.sidebar:active:not(:has(.sidebar-profile:active))
+       :not(:has(.sidebar__section:not(:first-of-type):active))
+       .sidebar__content {
+  left: 0;
 }
 
-.header__search:not(:placeholder-shown) .header__action-button:nth-child(1) {
-  left: 16px;
+.sidebar__content:hover:not(
+  :has(
+    .sidebar-profile:hover,
+    .sidebar__section:not(:nth-of-type(1)):hover
+  )
+) {
+  left: 0;
 }
 
-.header__action-button svg {
-  transform: scale(1.5);
+.sidebar__content:active:not(
+  :has(.sidebar__menu:active)
+) {
+  left: 100% !important;
 }
-  
-.header__search:hover {
+
+.sidebar__content:has(
+  .sidebar__menu-item-button:focus
+) {
+  left: 100% !important;
+  transition: left 0s 0.1s linear;
+}
+
+.sidebar__section:nth-of-type(1) {
+  background: color(bg-2, 0.75);
+  border: none;
+  padding: 0;
+  margin: $header-top + $header-size 0 $header-size 0;
+  height: 100%;
+}
+
+.sidebar__section:nth-of-type(1) .sidebar__menu {
+  background: linear-gradient(135deg, color(gradient-2, 1), color(gradient-1, 1));
+  width: max-content;
+  height: 100%;
+  gap: 0;
+  @include flex(
+    $direction: column, 
+    $justify: center);
+  cursor: default;
+}
+
+.sidebar__menu-item {
+  border-radius: 0;
+  padding: 8px 64px 8px 24px;
+  color: color(bg-1, 0.5);
+}
+
+.sidebar__menu-item:hover {
   background: color(bg-1, 0.25);
 }
 
-.header__search:not(:focus-within):has(.header__search-input:not(:placeholder-shown)) {
-  background-color: color(bg-1, 0.75);
+.sidebar__menu-item--active {
+  background: color(bg-1, 0.25);
+  color: color(bg-1);
+  align-items: center
 }
 
-.header__search:has(.header__search-input:not(:placeholder-shown)) {
-  background-color: color(bg-1);
-
-  & svg {
-    fill: color(bg-2);
-  }
+.sidebar__menu-item--active::before {
+  content: "";
+  background: color(accent-3);
+  height: $header-top;
+  width: 8px;
+  position: absolute;
+  left: 0;
+  border-radius: 0 8px 8px 0;
 }
 
-.header__search:focus-within {
-  background: color(bg-1, 0.5);
-
-  & .header__search-input {
-    &::placeholder {
-      color: color(bg-2, 0.5);
-      font-size: 16px;
-      font-style: italic;
-    }
-  }
-
-  & svg {
-    fill: color(bg-2);
-  }
+.sidebar__menu-item-button {
+  gap: 16px;
 }
 
-.header__search-input {
-  font-size: 16px;
-  color: color(bg-2);
-  padding: 0 2px 0 $header-size;
- 
-  &::placeholder {
-    color: transparent;
-  } 
+.sidebar__menu-item-button svg {
+  height: 32px;
+  width: 32px;
 }
 
-[data-tooltip-id=":r1:"] {
+.sidebar__menu-item span {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 24px;
+  color: color(bg-1, 0.5);
+}
+
+.sidebar__menu-item--active span {
+  color: color(bg-1);
+}
+
+.sidebar__handle,
+.sidebar__bottom-buttons {
+  display: none;
+}
+
+.sidebar__section:not(:nth-of-type(1)) {
   display: none;
 }

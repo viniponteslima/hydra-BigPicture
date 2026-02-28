@@ -1,0 +1,184 @@
+@use "abstracts" as *;
+
+.library__content {
+  padding: 0;
+}
+
+.library__controls-row {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-areas: "_ filter view";
+}
+
+.sidebar__add-button {
+  display: flex;
+  position: fixed;
+  z-index: 5;
+  right: 32px !important;
+  $size: $header-size;
+  @include height($size, $size, $size);
+  @include width($size, $size, $size);
+  top: calc($header-top + $header-size);
+}
+
+.library__controls-left {
+  grid-area: filter;
+  justify-content: center;
+  border: 0;
+}
+
+.library-filter-options__tab {
+  border-radius: 32px;
+  transition: all 0.2s linear;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 12px;
+  color: color(bg-1);
+}
+
+.library-filter-options__tab:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.library-filter-options__tab--active {
+  background: rgba(255,255,255,0.1);
+  transition: all 0.2s linear;
+}
+
+.library-filter-options__tab--active:hover {
+  background: color(bg-1, 0.25);
+}
+
+.library-filter-options__tab-badge {
+  background: color(accent-4);
+  padding: 8px;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.library-filter-options__tab-underline {
+  display: none;
+}
+
+.library__controls-right {
+  display: flex;
+  grid-area: view;
+  justify-content: end;
+  position: fixed;
+  top: 0;
+  right: 135px;
+  -webkit-app-region: no-drag;
+  z-index: 5;
+}
+
+.library-view-options__options {
+  gap: 0;
+  padding-right: 16px
+}
+
+.library-view-options__option {
+  $header-top: 33.5px;
+
+  min-width: unset !important;
+  max-width: unset;
+  
+  min-height: $header-top !important;
+  max-height: $header-top;
+
+  aspect-ratio: 9/7;
+  background: none !important;
+  color: color(bg-1, 0.25) !important;
+  border-radius: 0 !important;
+  cursor: default;
+
+  &.active {
+    color: color(bg-1) !important;
+  }
+
+  &:hover {
+    background: rgba(255,255,255,0.1) !important;
+  }
+}
+
+.library__collections {
+  @include container__toolbar;
+}
+
+.library__collection-item {
+  @include toolbar;
+}
+
+.library__games-grid {
+  display: grid;
+  grid-auto-flow: column;
+  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 32px 20px 64px;
+}
+
+.library__games-grid  li {
+  display: flex;
+}
+
+.library-game-card__overlay {
+  background: transparent;
+  position: static;
+  order: 1;
+  padding: 0;
+}
+
+.library-game-card__wrapper {
+  display: grid;
+  grid-template-rows: 80% max-content max-content;
+  aspect-ratio: unset;
+  box-shadow: none;
+  height: 100%;
+  gap: 4px;
+}
+
+.library-game-card__wrapper::before {
+  content: none;
+}
+
+.library-game-card__wrapper::after {
+  content: attr(title);
+  color: color(bg-1);
+  text-align: start;
+}
+
+.library-game-card__game-image {
+  object-fit: contain;
+  aspect-ratio: 6/9;
+}
+
+// 
+
+.game-item__content-link:hover::after,
+.game-card:hover::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 85%;
+  border-radius: 50%;
+  background: color(accent-2);
+  z-index: -2;
+  filter: blur(32px);
+  opacity: 0.2;
+  left: 0;
+  top: 25%;
+}
+
+.user-library-game__playtime,
+.user-library-game__pin-button,
+.user-library-game__pin-button:hover,
+.library-game-card__playtime,
+.badge:hover {
+  background: color(bg-2, 0.25);
+  color: color(bg-1);
+  border-radius: 2px;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  transform: none;
+}

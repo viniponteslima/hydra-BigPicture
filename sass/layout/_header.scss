@@ -1,0 +1,226 @@
+@use "abstracts" as *;
+
+// Search
+.header__search {
+  position: fixed;
+  z-index: $header-index;
+  left: 0;
+  top: $header-top;
+  padding: 0;
+  height: $header-size;
+  border-radius: 0;
+  border:0; 
+  width: calc($header-calc);
+  background: transparent;
+  @include flex(row, nowrap, right, center);
+}
+
+.header__search *:not(.header__action-button, .header__action-button *) {
+  cursor: icon(text) 2 12, text !important;
+}
+
+.header__action-button:nth-of-type(1) {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 16px;
+  cursor: default;
+}
+
+.header__action-button:nth-of-type(2) {
+  position: absolute;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background: color(bg-2);
+}
+
+.header__action-button:nth-of-type(2):hover {
+  background: color(bg-2, 0.5);
+}
+
+.header__action-button:nth-of-type(2) svg path {
+  fill: color(bg-1)
+}
+
+.header__search:not(:focus-within):not(:hover):has(.header__search-input:placeholder-shown) .header__action-button:nth-child(1) {
+  animation: search-button-out 0.5s ease-in-out forwards;
+}
+
+.header__search:not(:focus-within):hover:has(.header__search-input:placeholder-shown) .header__action-button:nth-child(1) {
+  animation: search-button-in 0.5s ease-in-out forwards;
+}
+
+.header__search:placeholder-shown .header__action-button:nth-child(1) {
+  right: 16px;
+}
+
+.header__search:not(:placeholder-shown) .header__action-button:nth-child(1) {
+  left: 16px;
+}
+
+.header__action-button svg {
+  transform: scale(1.5);
+}
+  
+.header__search:hover {
+  background: color(bg-1, 0.25);
+}
+
+.header__search:not(:focus-within):has(.header__search-input:not(:placeholder-shown)) {
+  background-color: color(bg-1, 0.75);
+}
+
+.header__search:has(.header__search-input:not(:placeholder-shown)) {
+  background-color: color(bg-1);
+
+  & svg {
+    fill: color(bg-2);
+  }
+}
+
+.header__search:focus-within {
+  background: color(bg-1, 0.5);
+
+  & .header__search-input {
+    &::placeholder {
+      color: color(bg-2, 0.5);
+      font-size: 16px;
+      font-style: italic;
+    }
+  }
+
+  & svg {
+    fill: color(bg-2);
+  }
+}
+
+.header__search-input {
+  font-size: 16px;
+  color: color(bg-2);
+  padding: 0 2px 0 $header-size;
+ 
+  &::placeholder {
+    color: transparent;
+  } 
+}
+
+.search-dropdown {
+  display: none;
+}
+
+[data-tooltip-id=":r1:"] {
+  display: none;
+}
+
+@mixin sidebar-button($pos: null, $no-bg: false) {
+
+  @if $pos != null {
+    --pos: #{$pos};
+    --size: #{$header-size};
+    --header-pos: calc(#{$header-calc} + var(--size) * (var(--pos) - 1));
+    left: var(--header-pos);
+    position: fixed;
+    z-index: $header-index;
+    top: $header-top;
+  }
+  padding: 0;
+  margin: 0;
+  min-height: var(--size);
+  min-width: var(--size);
+  border-radius: 0;
+  border: 0;
+  gap: 0;
+  color: color(bg-1);
+  width: min-content;
+  @include flex(row-reverse, nowrap, center, center);
+
+  & svg {
+    transform: scale(1.5);
+  }
+
+  & span, & small {
+    display: none;
+  }
+  
+  @if $no-bg == false {
+    &:hover {
+      background: color(bg-1, 0.25) ;
+    }
+  }
+}
+
+.bottom-panel .bottom-panel__downloads-button {
+  @include sidebar-button(1);
+
+  &::before {
+    content: "";
+    font-size: 14px;
+    width: 24px;
+    margin-top: 4px;
+    height: 24px;
+    background-image: icon(download);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: all 0.2s ease-in-out;
+  }
+
+  small {
+    font-family: monospace;
+    font-size: 14px;
+    color: color(bg-1);
+    white-space: nowrap;
+    padding-top: 1.25px;
+    font-weight: 100;
+  }
+}
+
+.sidebar-profile {
+  @include sidebar-button(2, true);
+}
+
+.sidebar-profile__button,
+.sidebar-profile__notification-button {
+  @include sidebar-button;
+}
+
+body:has(.downloads__container) .bottom-panel__downloads-button,
+body:has(.notifications) .sidebar-profile__notification-button,
+body:has(.profile__wrapper) .sidebar-profile__button {
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar-profile__notification-button {
+  position: relative;
+  background: transparent;
+}
+
+.sidebar-profile__notification-button-badge {
+  position: absolute;
+  @include flex(row, nowrap, center, center);
+  top: 8px;
+  right: 2px;
+  overflow: hidden;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: color(bg-1);
+  background: color(accent-4);
+}
+
+.sidebar-profile__button-content {
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+
+.sidebar-profile__button-information,
+.sidebar-profile__game-running-icon {
+  display: none;
+}
+
+.profile-avatar, .profile-avatar__image {
+  border-radius: 0;
+  border: 0;
+}
